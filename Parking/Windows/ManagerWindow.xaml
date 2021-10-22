@@ -1,0 +1,88 @@
+﻿<Window x:Class="Parking.Windows.ManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Parking.Windows"
+        xmlns:lvs="using:Microsoft.UI.Xaml.Controls"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Форма менеджера" MinHeight="450" MinWidth="800"
+        FontFamily="Tahoma"
+        FontSize="14"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!--Header-->
+        <Grid VerticalAlignment="Center" Grid.Row="0">
+            <Image HorizontalAlignment="Left" Height="60" Width="60" Source="/Resources/60526.png" Margin="5, 0, 0, 0"/>
+            <Button Click="ClickExit" Content="Назад" HorizontalAlignment="Right" Margin="0, 0, 5, 0"/>
+            <TextBlock Text="Форма Менеджера" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        
+        <!--Toolbar-->
+        <Grid Margin="5" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="5" Grid.Column="0">
+                <Label Height="40" Content="Дата начало"/>
+                <Label Height="40" Content="Дата окончания"/>
+                <Label Content="Клиент"/>
+                <Label Content="Место"/>
+            </StackPanel>
+            <StackPanel Margin="5" Grid.Column="1">
+                <xctk:DateTimePicker Height="40" Name="DPDateStart" />
+                <xctk:DateTimePicker Height="40" Name="DPDataEnd" MouseMove="DPDataEnd_MouseMove" />
+                <DatePicker Visibility="Collapsed" SelectedDateChanged="Dataend_SelectedDateChanged"/>
+                <ComboBox Name="CBClient" />
+                <ComboBox Name="CBMesto"/>
+            </StackPanel>
+            <StackPanel Margin="5" Grid.Column="2">
+                <Label Content="Здание"/>
+                <Label Content="Цена (Руб)"/>
+            </StackPanel>
+            <StackPanel Margin="5" Grid.Column="3">
+                <ComboBox Name="CBBuilding"/>
+                <TextBox Name="TBPrice" IsEnabled="True"/>
+                <TextBox Visibility="Hidden" Name="TBParkingID"/>
+            </StackPanel>
+            <StackPanel Margin="5" VerticalAlignment="Center" Grid.Column="4">
+                <Button Width="Auto" Content="Добавить" Click="ButtonClickAdd"/>
+                <Button Width="Auto" Content="Редактировать" Click="ButtonClickUpdate"/>
+                <Button Width="Auto" Content="Удалить" Click="ButtonClickDelete"/>
+            </StackPanel>
+            <StackPanel Margin="5" VerticalAlignment="Center" Grid.Column="5">
+                <Button Width="Auto" Content="Строения" Click="ButtonClickBuilding"/>
+                <Button Width="Auto" Content="Пользователи" Click="ButtonClickCustomer"/>
+                <Button Width="Auto" Content="Статистика" Click="ButtonClickStatistika"/>
+            </StackPanel>
+        </Grid>
+        
+        <!--Body-->
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="2">
+            <DataGrid MouseDoubleClick="DataGridMouseDoubleClickOsn" IsReadOnly="True" Width="Auto" Height="Auto" x:Name="DataGridOsn" AutoGenerateColumns="False" ItemsSource="{Binding dt}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Visibility="Hidden" x:Name="id" Header="id" Binding="{Binding id}"/>
+                    <DataGridTextColumn  x:Name="datestart" Header="Дата начала" Binding="{Binding datestart}"/>
+                    <DataGridTextColumn  x:Name="dataend" Header="Дата окончания" Binding="{Binding dataend}"/>
+                    <DataGridTextColumn  x:Name="customer" Header="Клиент" Binding="{Binding customer}"/>
+                    <DataGridTextColumn  x:Name="sector" Header="Место" Binding="{Binding sector}"/>
+                    <DataGridTextColumn  x:Name="building" Header="Здание" Binding="{Binding building}"/>
+                    <DataGridTextColumn  x:Name="price" Header="Цена (Руб)" Binding="{Binding price}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>

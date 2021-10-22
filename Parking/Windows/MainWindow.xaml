@@ -1,0 +1,37 @@
+﻿<Window x:Class="Parking.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Parking"
+        mc:Ignorable="d"
+        Title="Форма Авторизации"  MinHeight="300" MinWidth="400" FontFamily="Tahoma" FontSize="18">
+    <Viewbox Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--Header-->
+            <Grid VerticalAlignment="Center" Grid.Row="0">
+                <Image HorizontalAlignment="Left" Height="60" Width="60" Source="/Resources/60526.png" Margin="5, 0, 0, 0"/>
+                <Button Click="ClickExit" Content="Выход" HorizontalAlignment="Right" Margin="0, 0, 5, 0"/>
+                <TextBlock Text="Форма Авторизации" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            
+            <Grid Grid.Row="1">
+                <TextBox Name="pwdTextBox" Margin="106,97,178,175" Width="167" Visibility="Hidden" Height="30" RenderTransformOrigin="0.5,0.5"/>
+                <TextBox Text="" Name="LoginBox" HorizontalAlignment="Left" Height="31" Margin="106,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167"/>
+                <PasswordBox PasswordChanged="PasswordBox_PasswordChanged" Password="" x:Name="PasswordBox" PasswordChar="*" VerticalAlignment="Top" Margin="106,97,179,0"/>
+                <CheckBox x:Name="revealModeCheckBox" Content="Показать/Скрыть" IsChecked="False" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" Margin="106,136,174,134" Click="revealModeCheckBox_Click"/>
+                <Label Content="Логин" HorizontalAlignment="Left" Margin="38,44,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+                <Label Content="Пароль" HorizontalAlignment="Left" Margin="24,102,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+                <Button  Content="Авторизоваться" HorizontalAlignment="Left" Margin="106,187,0,0" VerticalAlignment="Top" Width="167" Height="40" Click="ButtonAvtorizClick" FontFamily="Arial"/>
+                <Image Visibility="Hidden" Name="ImageCaptcha" HorizontalAlignment="Left" Height="87" Margin="291,38,0,0" VerticalAlignment="Top" Width="151"/>
+                <TextBox Visibility="Hidden" Name="Cap" HorizontalAlignment="Left" Height="34" Margin="291,145,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155"/>
+                <TextBlock x:Name="statusText" Margin="10,211,356,10" HorizontalAlignment="Center" Width="86" />
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>
