@@ -1,0 +1,225 @@
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\Parking.csprojAssemblyReference.cache
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\MainWindow.g.cs
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\WindowAdmin.g.cs
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\App.g.cs
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\Parking_MarkupCompile.cache
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\Parking_MarkupCompile.lref
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\Parking.exe.config
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\Parking.exe
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\Parking.pdb
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\EntityFramework.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\EntityFramework.SqlServer.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\GMap.NET.Core.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\GMap.NET.WindowsForms.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\GMap.NET.WindowsPresentation.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\MySql.Data.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\Newtonsoft.Json.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Data.SqlClient.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Data.SQLite.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Security.Principal.Windows.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\Google.Protobuf.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\Zstandard.Net.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\K4os.Compression.LZ4.Streams.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\BouncyCastle.Crypto.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\Ubiety.Dns.Core.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Memory.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Buffers.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\K4os.Compression.LZ4.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\K4os.Hash.xxHash.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Numerics.Vectors.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\EntityFramework.xml
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\EntityFramework.SqlServer.xml
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\MySql.Data.xml
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\Newtonsoft.Json.xml
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Data.SqlClient.xml
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Data.SQLite.xml
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\System.Security.Principal.Windows.xml
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\MainWindow.baml
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\WindowAdmin.baml
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\Parking.g.resources
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\Parking.Properties.Resources.resources
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\Parking.csproj.GenerateResource.cache
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\Parking.csproj.CoreCompileInputs.cache
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\Parking.csproj.CopyComplete
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\Parking.exe
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\Parking.pdb
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\WindowManager.g.cs
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\WindowSpravochnik.g.cs
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\WindowStatist.g.cs
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\LiveCharts.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\LiveCharts.Wpf.dll
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\LiveCharts.pdb
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\LiveCharts.xml
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\LiveCharts.Wpf.pdb
+D:\Homowork\Дипломная работа\Parking\Parking\bin\Debug\LiveCharts.Wpf.xml
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\WindowManager.baml
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\WindowSpravochnik.baml
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\WindowStatist.baml
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\WindowBuilding.g.cs
+D:\Homowork\Дипломная работа\Parking\Parking\obj\Debug\WindowBuilding.baml
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Parking.csprojAssemblyReference.cache
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\AdminWindow.g.cs
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\App.g.cs
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Parking_MarkupCompile.cache
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Parking_MarkupCompile.lref
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Parking.exe
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Parking.pdb
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Parking.exe.config
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Parking.exe
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Parking.pdb
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\EntityFramework.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\EntityFramework.SqlServer.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\GMap.NET.Core.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\GMap.NET.WindowsForms.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\GMap.NET.WindowsPresentation.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\LiveCharts.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\LiveCharts.Wpf.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\MySql.Data.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Newtonsoft.Json.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Data.SqlClient.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Data.SQLite.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Security.Principal.Windows.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Google.Protobuf.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Zstandard.Net.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\K4os.Compression.LZ4.Streams.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\BouncyCastle.Crypto.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Ubiety.Dns.Core.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Memory.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Buffers.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\K4os.Compression.LZ4.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\K4os.Hash.xxHash.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Numerics.Vectors.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\EntityFramework.xml
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\EntityFramework.SqlServer.xml
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\LiveCharts.pdb
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\LiveCharts.xml
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\LiveCharts.Wpf.pdb
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\LiveCharts.Wpf.xml
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\MySql.Data.xml
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Newtonsoft.Json.xml
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Data.SqlClient.xml
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Data.SQLite.xml
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\System.Security.Principal.Windows.xml
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\App.baml
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\AdminWindow.baml
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Parking.g.resources
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Parking.Properties.Resources.resources
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Parking.csproj.GenerateResource.cache
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Parking.csproj.CoreCompileInputs.cache
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Parking.csproj.CopyComplete
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\MainWindow.g.cs
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\MainWindow.baml
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\SpravochnikWindow.g.cs
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\StatistWindow.g.cs
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\SpravochnikWindow.baml
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\StatistWindow.baml
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\ManagerWindow.g.cs
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\ManagerWindow.baml
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\BuildingWindow.g.cs
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\BuildingWindow.baml
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\CustomerWindow.g.cs
+D:\Homowork\Дипломная работа\Parking1\Parking\obj\Debug\Windows\CustomerWindow.baml
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Xceed.Wpf.AvalonDock.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\Xceed.Wpf.Toolkit.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\ja-JP\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+D:\Homowork\Дипломная работа\Parking1\Parking\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Parking.exe.config
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Parking.exe
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Parking.pdb
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\EntityFramework.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\GMap.NET.Core.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\GMap.NET.WindowsForms.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\GMap.NET.WindowsPresentation.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\LiveCharts.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\MySql.Data.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Data.SqlClient.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Data.SQLite.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Xceed.Wpf.AvalonDock.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Google.Protobuf.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Zstandard.Net.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Memory.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Buffers.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\EntityFramework.xml
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\LiveCharts.pdb
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\LiveCharts.xml
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\MySql.Data.xml
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Data.SqlClient.xml
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Data.SQLite.xml
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\ja-JP\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.csproj.AssemblyReference.cache
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\BuildingWindow.g.cs
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\CustomerWindow.g.cs
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\MainWindow.g.cs
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\AdminWindow.g.cs
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\ManagerWindow.g.cs
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\SpravochnikWindow.g.cs
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\StatistWindow.g.cs
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\App.g.cs
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking_MarkupCompile.cache
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking_MarkupCompile.lref
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\App.baml
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\BuildingWindow.baml
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\CustomerWindow.baml
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\MainWindow.baml
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\AdminWindow.baml
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\ManagerWindow.baml
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\SpravochnikWindow.baml
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Windows\StatistWindow.baml
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.g.resources
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.Properties.Resources.resources
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.csproj.GenerateResource.cache
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.csproj.CoreCompileInputs.cache
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.exe
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.pdb
