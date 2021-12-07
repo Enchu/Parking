@@ -123,7 +123,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Entities\ClassMysql.cs" />
     <Compile Include="Entities\ClassSpravka.cs" />
     <Compile Include="Utils\Msg.cs" />
     <Compile Include="Windows\AdminWindow.xaml.cs">

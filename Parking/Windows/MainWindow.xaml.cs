@@ -11,9 +11,7 @@ namespace Parking
 {
     public partial class MainWindow : Window
     {
-        MySqlConnection Cn = new MySqlConnection("server = 127.0.0.1; user id = root; port=3310;persistsecurityinfo=True;database=dp;password=;convert zero datetime=True");
-        //public MySqlConnection Cn = new MySqlConnection("server =185.92.149.80; user id = admin_leha; port=3306;persistsecurityinfo=True;database=admin_db;charset=utf8;password=hZIKqXWowf;convert zero datetime=True");
-        //public static MySqlConnection Cn = new MySqlConnection("server=185.92.149.80;port=3306;database=admin_db;user=admin_leha;password=hZIKqXWowf;charset=utf8");
+        //MySqlConnection Cn = new MySqlConnection("server = 127.0.0.1; user id = root; port=3310;persistsecurityinfo=True;database=dp;password=;convert zero datetime=True");
         public MainWindow()
         {
             InitializeComponent();
@@ -113,21 +111,24 @@ namespace Parking
 
         void VH()
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM staff where Email='" + LoginBox.Text + "' and Password='" + PasswordBox.Password + "' and Status='Работает';", Cn);
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM staff where Email='" + LoginBox.Text + "' and Password='" + PasswordBox.Password + "' and Status='Работает';", ClassSpravka.Cn);
             try
             {
-                Cn.Open();
+                ClassSpravka.Cn.Open();
                 MySqlDataReader read = cmd.ExecuteReader();
+                
                 if (read.Read())
                 {
                     Pass = read[1].ToString();
                     Role = read[7].ToString();
                     name = read[0].ToString();
                     ClassSpravka.NameF = read[0].ToString();
+                    
                     switch (read[7].ToString())
                     {
                         case "Администратор":
                             {
+                                ClassSpravka.Cn.Close();
                                 AdminWindow fm = new AdminWindow();
                                 fm.Show();
                                 this.Close();
@@ -135,6 +136,7 @@ namespace Parking
                             }
                         case "Менеджер":
                             {
+                                ClassSpravka.Cn.Close();
                                 ManagerWindow fm = new ManagerWindow(name);
                                 fm.Show();
                                 this.Close();
@@ -151,7 +153,7 @@ namespace Parking
             {
                 MessageBox.Show("Ошибка подключения к БД!!!" + Ex.ToString());
             }
-            finally { Cn.Close(); }
+            finally { ClassSpravka.Cn.Close(); }
         }
         private void ButtonAvtorizClick(object sender, RoutedEventArgs e)
         {
