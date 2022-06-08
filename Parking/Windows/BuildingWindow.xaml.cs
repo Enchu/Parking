@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using MySql.Data.MySqlClient;
+using Parking.Entities;
 using Parking.Windows;
 
 namespace Parking.Windows
@@ -22,15 +23,6 @@ namespace Parking.Windows
     public partial class BuildingWindow : Window
     {
         List<ClassSpravka.Spravka> ListAddress = new List<ClassSpravka.Spravka>();
-        List<ClassSpravka.Spravka> ff(ComboBox fs, string sql, string ls2, int Column)
-        {
-            List<ClassSpravka.Spravka> fg = ClassSpravka.SelectTB(sql, ls2, Column);
-            for (int i = 0; i < fg.Count; i++)
-            {
-                fs.Items.Add(fg[i].Name);
-            }
-            return fg;
-        }
         public class Spravka
         {
             public string id { get; set; }
@@ -38,9 +30,8 @@ namespace Parking.Windows
             public string address { get; set; }
             public string number_quant { get; set; }
             public BitmapFrame chema { get; set; }
-
         }
-        List<Spravka> nn = new List<Spravka>();
+        List<TableSpravka.Building> nn = new List<TableSpravka.Building>();
         string it1 = null;
         void Load()
         {
@@ -67,7 +58,7 @@ namespace Parking.Windows
                 {
                     byte[] imgData = (byte[])item["chema"];
                     MemoryStream ms = new MemoryStream(imgData);
-                    nn.Add(new Spravka()
+                    nn.Add(new TableSpravka.Building()
                     {
                         chema = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.OnLoad),
                         id = item["id"].ToString(),
@@ -75,9 +66,10 @@ namespace Parking.Windows
                         number_quant = item["number_quant"].ToString(),
                         address = it1,
                     });
-                }else
+                }
+                else
                 {
-                    nn.Add(new Spravka()
+                    nn.Add(new TableSpravka.Building()
                     {
                         id = item["id"].ToString(),
                         building = item["building"].ToString(),
@@ -92,7 +84,7 @@ namespace Parking.Windows
 
             CBAddress.Items.Clear();
 
-            ListAddress = ff(CBAddress, "SELECT * FROM `address`", "address", 0);
+            ListAddress = SelectTable.ff(CBAddress, "SELECT * FROM `address`", "address", 0);
         }
         public BuildingWindow()
         {

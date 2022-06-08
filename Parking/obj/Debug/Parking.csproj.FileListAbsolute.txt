@@ -174,7 +174,6 @@ C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Runtime.CompilerService
 C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Buffers.dll
 C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\K4os.Compression.LZ4.dll
 C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\K4os.Hash.xxHash.dll
-C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\EntityFramework.xml
 C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Alexey\Source\Parking1\Parking\bin\Debug\LiveCharts.pdb
@@ -223,3 +222,6 @@ C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.csproj.GenerateResourc
 C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.csproj.CoreCompileInputs.cache
 C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.exe
 C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.pdb
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.csproj.SuggestedBindingRedirects.cache
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.exe.config
+C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\Parking.csproj.CopyComplete

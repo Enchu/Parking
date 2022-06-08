@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using Parking.Windows;
+using Parking.Entities;
+
 
 namespace Parking.Windows
 {
@@ -22,26 +24,6 @@ namespace Parking.Windows
         List<ClassSpravka.Spravka> ListRole = new List<ClassSpravka.Spravka>();
         List<ClassSpravka.Spravka> ListStatus = new List<ClassSpravka.Spravka>();
         List<ClassSpravka.Spravka> ListGender = new List<ClassSpravka.Spravka>();
-        List<ClassSpravka.Spravka> ff(ComboBox fs, string sql, string ls2, int Column)
-        {
-            List<ClassSpravka.Spravka> fg = ClassSpravka.SelectTB(sql, ls2, Column);
-            for (int i = 0; i < fg.Count; i++)
-            {
-                fs.Items.Add(fg[i].Name);
-            }
-            return fg;
-        }
-        int Search(List<ClassSpravka.Spravka> gg, string nn)
-        {
-            for (int i = 0; i < gg.Count; i++)
-            {
-                if (gg[i].Name == nn)
-                {
-                    return gg[i].Id;
-                }
-            }
-            return 0;
-        }
         void Load()
         {
             nn.Clear();
@@ -63,7 +45,7 @@ namespace Parking.Windows
                         it1 = item1["Gender"].ToString();
                     }
                 }
-                nn.Add(new Spravka()
+                nn.Add(new TableSpravka.Person()
                 {
                     First_name = item["First_name"].ToString(),
                     Last_name = item["Last_name"].ToString(),
@@ -80,7 +62,7 @@ namespace Parking.Windows
             DataGridOsn.ItemsSource = nn;
 
             CBGender.Items.Clear();
-            ListGender = ff(CBGender, "SELECT * FROM `gender`", "gender", 0);
+            ListGender = SelectTable.ff(CBGender, "SELECT * FROM `gender`", "gender", 0);
         }
         public class Spravka
         {
@@ -90,14 +72,12 @@ namespace Parking.Windows
             public string Last_name { get; set; }
             public string Patronomyc { get; set; }
             public string Phone { get; set; }
-            public string Date_of_birth { get; set; }
             public string Status { get; set; }
             public string Role { get; set; }
             public BitmapFrame Photo { get; set; }
             public string Gender { get; set; }
-
         }
-        List<Spravka> nn = new List<Spravka>();
+        List<TableSpravka.Person> nn = new List<TableSpravka.Person>();
         string it1 = null;
         string it2 = null;
         string it3 = null;

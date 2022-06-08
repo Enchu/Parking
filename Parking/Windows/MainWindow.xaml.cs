@@ -6,12 +6,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Parking.Windows;
+using Parking.Entities;
 
 namespace Parking
 {
     public partial class MainWindow : Window
     {
-        //MySqlConnection Cn = new MySqlConnection("server = 127.0.0.1; user id = root; port=3310;persistsecurityinfo=True;database=dp;password=;convert zero datetime=True");
         public MainWindow()
         {
             InitializeComponent();
@@ -58,30 +58,7 @@ namespace Parking
             image.EndInit();
             return image;
         }
-        int vhodcount = 0;
-
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            /*if (PasswordBox.Password == "Password")
-			{
-				statusText.Text = "'Password' is not allowed as a password.";
-			}
-			else
-			{
-				statusText.Text = string.Empty;
-			}*/
-        }
-        private void CheckBox_Changed(object sender, RoutedEventArgs e)
-        {
-            /*if (revealModeCheckBox.IsChecked == true)
-			{
-				PasswordBox.PasswordRevealMode = PasswordBox.Visible;
-			}
-			else
-			{
-				PasswordBox.PasswordRevealMode = PasswordRevealMode.Hidden;
-			}*/
-        }
+        
 
         private void revealModeCheckBox_Click(object sender, RoutedEventArgs e)
         {
@@ -159,6 +136,7 @@ namespace Parking
         {
             if (LoginBox.Text != "" && PasswordBox.Password != "")
             {
+                int vhodcount = 0;
                 if (vhodcount <= 2)
                 {
                     VH();

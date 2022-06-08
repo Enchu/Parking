@@ -23,8 +23,8 @@
             <Grid Grid.Row="1">
                 <TextBox Name="pwdTextBox" Margin="106,97,178,175" Width="167" Visibility="Hidden" Height="30" RenderTransformOrigin="0.5,0.5"/>
                 <TextBox Text="" Name="LoginBox" HorizontalAlignment="Left" Height="31" Margin="106,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167"/>
-                <PasswordBox PasswordChanged="PasswordBox_PasswordChanged" Password="" x:Name="PasswordBox" PasswordChar="*" VerticalAlignment="Top" Margin="106,97,179,0"/>
-                <CheckBox x:Name="revealModeCheckBox" Content="Показать/Скрыть" IsChecked="False" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" Margin="106,136,174,134" Click="revealModeCheckBox_Click"/>
+                <PasswordBox Password="" x:Name="PasswordBox" PasswordChar="*" VerticalAlignment="Top" Margin="106,97,179,0"/>
+                <CheckBox x:Name="revealModeCheckBox" Content="Показать/Скрыть" IsChecked="False" Margin="106,136,174,134" Click="revealModeCheckBox_Click"/>
                 <Label Content="Логин" HorizontalAlignment="Left" Margin="38,44,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <Label Content="Пароль" HorizontalAlignment="Left" Margin="24,102,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
                 <Button  Content="Авторизоваться" HorizontalAlignment="Left" Margin="106,187,0,0" VerticalAlignment="Top" Width="167" Height="40" Click="ButtonAvtorizClick" FontFamily="Arial"/>

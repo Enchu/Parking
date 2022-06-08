@@ -129,7 +129,7 @@ namespace Parking.Windows
             try
             {
                 SeriesCollection = new SeriesCollection();
-                DataTable DT = ClassSpravka.LoadWindow("SELECT `customer`,`building`,SUM(`price`),COUNT(`customer`) FROM `parking` Where `datestart`>'" + DPOt.SelectedDate.Value.Year + "." + DPOt.SelectedDate.Value.Month + "." + DPOt.SelectedDate.Value.Day + "' and `dataend` <'" + DPDo.SelectedDate.Value.Year + "." + DPDo.SelectedDate.Value.Month + "." + DPDo.SelectedDate.Value.Day + "' GROUP BY building");
+                DataTable DT = ClassSpravka.LoadVV("SELECT `customer`,`building`,SUM(`price`),COUNT(`customer`) FROM `parking` Where `datestart`>'" + DPOt.SelectedDate.Value.Year + "." + DPOt.SelectedDate.Value.Month + "." + DPOt.SelectedDate.Value.Day + "' and `dataend` <'" + DPDo.SelectedDate.Value.Year + "." + DPDo.SelectedDate.Value.Month + "." + DPDo.SelectedDate.Value.Day + "' GROUP BY building");
                 foreach (DataRow item in DT.Rows)
                 {
                     SeriesCollection.Add(new PieSeries()

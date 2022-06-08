@@ -20,15 +20,6 @@ namespace Parking.Windows
     public partial class SpravochnikWindow : Window
     {
         List<ClassSpravka.Spravka> ListName = new List<ClassSpravka.Spravka>();
-        List<ClassSpravka.Spravka> ff(ComboBox fs, string sql, string ls2)
-        {
-            List<ClassSpravka.Spravka> fg = ClassSpravka.SelectTB(sql, ls2, 0);
-            for (int i = 0; i < fg.Count; i++)
-            {
-                fs.Items.Add(fg[i].Name);
-            }
-            return fg;
-        }
         int Search(List<ClassSpravka.Spravka> gg, string nn)
         {
             for (int i = 0; i < gg.Count; i++)
@@ -86,7 +77,6 @@ namespace Parking.Windows
             this.Close();
         }
 
-
         public static void RussianTranslationColumns(ref DataGrid MainTable)
         {
             string[] WordListEnRu = { "address", "Адрес", "sector", "Сектор", "floor", "Этаж"};
@@ -124,7 +114,6 @@ namespace Parking.Windows
                 }
             }
             catch { }
-
         }
 
         private void ButtonClickAdd(object sender, RoutedEventArgs e)

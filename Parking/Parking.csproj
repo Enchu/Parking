@@ -124,6 +124,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\ClassSpravka.cs" />
+    <Compile Include="Entities\SearchTable.cs" />
+    <Compile Include="Entities\SelectTable.cs" />
+    <Compile Include="Entities\TableSpravka.cs" />
     <Compile Include="Utils\Msg.cs" />
     <Compile Include="Windows\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>

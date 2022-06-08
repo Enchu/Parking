@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Parking.Windows;
 using System.Windows.Threading;
+using Parking.Entities;
 
 namespace Parking.Windows
 {
@@ -23,32 +24,15 @@ namespace Parking.Windows
         List<ClassSpravka.Spravka> ListOwner = new List<ClassSpravka.Spravka>();
         List<ClassSpravka.Spravka> ListPlace = new List<ClassSpravka.Spravka>();
         List<ClassSpravka.Spravka> ListBuilding = new List<ClassSpravka.Spravka>();
-        List<ClassSpravka.Spravka> ff(ComboBox fs, string sql, string ls2, int Column)
-        {
-            List<ClassSpravka.Spravka> fg = ClassSpravka.SelectTB(sql, ls2, Column);
-            for (int i = 0; i < fg.Count; i++)
-            {
-                fs.Items.Add(fg[i].Name);
-            }
-            return fg;
-        }
-        public class Spravka
-        {
-            public string id { get; set; }
-            public string datestart { get; set; }
-            public string dataend { get; set; }
-            public string customer { get; set; }
-            public string sector { get; set; }
-            public string building { get; set; }
-            public string price { get; set; }
-        }
-        List<Spravka> nn = new List<Spravka>();
+
+        List<TableSpravka.Manager> nn = new List<TableSpravka.Manager>();
         string it1 = null;
         string it2 = null;
         string it3 = null;
         void Load()
         {
             nn.Clear();
+
             DataTable dt = ClassSpravka.LoadVV("SELECT * FROM `parking`");
             DataTable dt1 = ClassSpravka.LoadVV("SELECT * FROM `customer`");
             DataTable dt2 = ClassSpravka.LoadVV("SELECT * FROM `sector`");
@@ -77,7 +61,7 @@ namespace Parking.Windows
                         it3 = item3["building"].ToString();
                     }
                 }
-                nn.Add(new Spravka()
+                nn.Add(new TableSpravka.Manager()
                 {
                     id = item["id"].ToString(),
                     datestart = item["datestart"].ToString(),
@@ -97,9 +81,9 @@ namespace Parking.Windows
             CBBuilding.Items.Clear();
 
             CBMesto.Items.Add("Нет");
-            ListOwner = ff(CBClient, "SELECT * FROM `customer`", "email", 0);
-            ListPlace = ff(CBMesto, "SELECT * FROM `sector`", "sector", 0);
-            ListBuilding = ff(CBBuilding, "SELECT * FROM `building`", "building", 1);
+            ListOwner = SelectTable.ff(CBClient, "SELECT * FROM `customer`", "email", 0);
+            ListPlace = SelectTable.ff(CBMesto, "SELECT * FROM `sector`", "sector", 0);
+            ListBuilding = SelectTable.ff(CBBuilding, "SELECT * FROM `building`", "building", 1);
         }
 
         string name1 = "";
