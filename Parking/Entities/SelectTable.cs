@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parking.Entities.NewFolder1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,14 +11,14 @@ namespace Parking.Entities
 {
     public class SelectTable
     {
-        public static List<ClassSpravka.Spravka> ff(ComboBox fs, string sql, string ls2, int Column)
+        public static List<Directory> listSelectTable(ComboBox comboBoxList, string sql, int column)
         {
-            List<ClassSpravka.Spravka> fg = ClassSpravka.SelectTB(sql, ls2, Column);
-            for (int i = 0; i < fg.Count; i++)
+            List<Directory> listDirectoryTable = Catalog.SelectTable(sql, column);
+            for (int i = 0; i < listDirectoryTable.Count; i++)
             {
-                fs.Items.Add(fg[i].Name);
+                comboBoxList.Items.Add(listDirectoryTable[i].Name);
             }
-            return fg;
+            return listDirectoryTable;
         }
 
     }

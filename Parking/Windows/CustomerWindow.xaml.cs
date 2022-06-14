@@ -1,86 +1,57 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Parking.Entities;
+using Parking.Entities.Help;
+using Parking.Entities.NewFolder1;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
-using Parking.Windows;
-using Parking.Entities;
-
 
 namespace Parking.Windows
 {
     public partial class CustomerWindow : Window
     {
-        List<ClassSpravka.Spravka> ListRole = new List<ClassSpravka.Spravka>();
-        List<ClassSpravka.Spravka> ListStatus = new List<ClassSpravka.Spravka>();
-        List<ClassSpravka.Spravka> ListGender = new List<ClassSpravka.Spravka>();
+        List<Directory> ListRole = new List<Directory>();
+        List<Directory> ListStatus = new List<Directory>();
+        List<Directory> ListGender = new List<Directory>();
         void Load()
         {
-            nn.Clear();
-            ClassSpravka.Cn.Open();
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM `customer`", ClassSpravka.Cn);
-            DataTable dt = new DataTable();
-            dt.Load(cmd.ExecuteReader());
-            MySqlCommand cmd1 = new MySqlCommand("SELECT * FROM `gender`", ClassSpravka.Cn);
-            DataTable dt1 = new DataTable();
-            dt1.Load(cmd1.ExecuteReader());
-            ClassSpravka.Cn.Close();
+            listPerson.Clear();
 
-            foreach (DataRow item in dt.Rows)
+            var dataCustomer = Catalog.LoadWindow("`customer`");
+            var dataGender = Catalog.LoadWindow("`gender`");
+
+            foreach (DataRow itemCustomer in dataCustomer.Rows)
             {
-                foreach (DataRow item1 in dt1.Rows)
+                foreach (DataRow itemGender in dataGender.Rows)
                 {
-                    if (item1["Gender"].ToString() == item["Gender"].ToString())
+                    if (itemGender["Gender"].ToString() == itemCustomer["Gender"].ToString())
                     {
-                        it1 = item1["Gender"].ToString();
+                        this.tableGender = itemGender["Gender"].ToString();
                     }
                 }
-                nn.Add(new TableSpravka.Person()
+                listPerson.Add(new Person()
                 {
-                    First_name = item["First_name"].ToString(),
-                    Last_name = item["Last_name"].ToString(),
-                    Patronomyc = item["Patronomyc"].ToString(),
-                    Phone = item["Phone"].ToString(),
-                    Email = item["Email"].ToString(),
-                    Password = item["Password"].ToString(),
-                    Gender = it1,
+                    First_name = itemCustomer["First_name"].ToString(),
+                    Last_name = itemCustomer["Last_name"].ToString(),
+                    Patronomyc = itemCustomer["Patronomyc"].ToString(),
+                    Phone = itemCustomer["Phone"].ToString(),
+                    Email = itemCustomer["Email"].ToString(),
+                    Password = itemCustomer["Password"].ToString(),
+                    Gender = this.tableGender,
                 });
             }
 
             DataGridOsn.ItemsSource = null;
             DataGridOsn.Items.Clear();
-            DataGridOsn.ItemsSource = nn;
+            DataGridOsn.ItemsSource = listPerson;
 
             CBGender.Items.Clear();
-            ListGender = SelectTable.ff(CBGender, "SELECT * FROM `gender`", "gender", 0);
+            ListGender = SelectTable.listSelectTable(CBGender, "SELECT * FROM `gender`", 0);
         }
-        public class Spravka
-        {
-            public string Email { get; set; }
-            public string Password { get; set; }
-            public string First_name { get; set; }
-            public string Last_name { get; set; }
-            public string Patronomyc { get; set; }
-            public string Phone { get; set; }
-            public string Status { get; set; }
-            public string Role { get; set; }
-            public BitmapFrame Photo { get; set; }
-            public string Gender { get; set; }
-        }
-        List<TableSpravka.Person> nn = new List<TableSpravka.Person>();
-        string it1 = null;
-        string it2 = null;
-        string it3 = null;
+
+        List<Person> listPerson = new List<Person>();
+        string tableGender = null;
         public CustomerWindow()
         {
             InitializeComponent();
@@ -100,7 +71,7 @@ namespace Parking.Windows
             {
                 if (Msg.ShowQuestion("Вы действительно хотите добавить?"))
                 {
-                    ClassSpravka.Prover($"Select count(*) from customer where Email = '{TBEmail.Text}'", "INSERT INTO `customer` (`Email`,`Password`,`First_name`,`Last_name`,`Patronomyc`,`Phone`,`Gender`) VALUES " +
+                    Catalog.mysqlTableCommand($"Select count(*) from customer where Email = '{TBEmail.Text}'", "INSERT INTO `customer` (`Email`,`Password`,`First_name`,`Last_name`,`Patronomyc`,`Phone`,`Gender`) VALUES " +
                             "( '" + TBEmail.Text + "','" + TBPassword.Text + "','" + TBFirst_name.Text + "', '" + TBLast_name.Text + "', '" + TBPatronomyc.Text + "', '" + TBPhone.Text + "','" + CBGender.Text + "' );");
                     Load();
                 }
@@ -117,7 +88,7 @@ namespace Parking.Windows
             {
                 if (Msg.ShowQuestion("Вы действительно хотите обновить?"))
                 {
-                    ClassSpravka.Prover($"Select count(*) from customer where Email = '{TBEmail.Text}' and Phone = '" + TBPhone.Text + "'", "UPDATE `customer` SET `Email`='" + TBEmail.Text + "', `Password` = '" + TBPassword.Text + "', `First_name` = '" + TBFirst_name.Text + "', `Last_name` = '" + TBLast_name.Text + "', `Patronomyc` = '" + TBPatronomyc.Text + "', `Phone` = '" + TBPhone.Text + "',`Gender`='" + CBGender.Text + "' WHERE `Email` = '" + TBIdEmail.Text + "';");
+                    Catalog.mysqlTableCommand($"Select count(*) from customer where Email = '{TBEmail.Text}' and Phone = '" + TBPhone.Text + "'", "UPDATE `customer` SET `Email`='" + TBEmail.Text + "', `Password` = '" + TBPassword.Text + "', `First_name` = '" + TBFirst_name.Text + "', `Last_name` = '" + TBLast_name.Text + "', `Patronomyc` = '" + TBPatronomyc.Text + "', `Phone` = '" + TBPhone.Text + "',`Gender`='" + CBGender.Text + "' WHERE `Email` = '" + TBIdEmail.Text + "';");
                     Load();
                 }
             }
@@ -133,7 +104,7 @@ namespace Parking.Windows
             {
                 if (Msg.ShowQuestion("Вы действительно хотите удалить?"))
                 {
-                    ClassSpravka.MysqlLi("DELETE FROM `customer` WHERE `customer`.`Email` = '"+TBIdEmail.Text+"'");
+                    Catalog.mysqlCommand("DELETE FROM `customer` WHERE `customer`.`Email` = '" + TBIdEmail.Text + "'");
                     Load();
                 }
             }

@@ -1,90 +1,70 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using MySql.Data.MySqlClient;
+using Parking.Entities;
+using Parking.Entities.Help;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-using MySql.Data.MySqlClient;
-using Parking.Entities;
-using Parking.Windows;
 
 namespace Parking.Windows
 {
     public partial class BuildingWindow : Window
     {
-        List<ClassSpravka.Spravka> ListAddress = new List<ClassSpravka.Spravka>();
-        public class Spravka
-        {
-            public string id { get; set; }
-            public string building { get; set; }
-            public string address { get; set; }
-            public string number_quant { get; set; }
-            public BitmapFrame chema { get; set; }
-        }
-        List<TableSpravka.Building> nn = new List<TableSpravka.Building>();
-        string it1 = null;
+        List<Entities.NewFolder1.Directory> ListAddress = new List<Entities.NewFolder1.Directory>();
+        List<Building> listBuildingTable = new List<Building>();
+
+        string dataAddress = null;
         void Load()
         {
-            nn.Clear();
-            ClassSpravka.Cn.Open();
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM `building`", ClassSpravka.Cn);
-            DataTable dt = new DataTable();
-            dt.Load(cmd.ExecuteReader());
-            MySqlCommand cmd1 = new MySqlCommand("SELECT * FROM `address`", ClassSpravka.Cn);
-            DataTable dt1 = new DataTable();
-            dt1.Load(cmd1.ExecuteReader());
-            ClassSpravka.Cn.Close();
+            listBuildingTable.Clear();
 
-            foreach (DataRow item in dt.Rows)
+            var dataBuilding = Catalog.LoadWindow("`building`");
+            var dataAddress = Catalog.LoadWindow("`address`");
+
+            foreach (DataRow itemBuilding in dataBuilding.Rows)
             {
-                foreach (DataRow item1 in dt1.Rows)
+                foreach (DataRow itemAddress in dataAddress.Rows)
                 {
-                    if (item1["address"].ToString() == item["address"].ToString())
+                    if (itemAddress["address"].ToString() == itemBuilding["address"].ToString())
                     {
-                        it1 = item1["address"].ToString();
+                        this.dataAddress = itemAddress["address"].ToString();
                     }
                 }
-                if (item["chema"].ToString().Length > 4)
+                if (itemBuilding["chema"].ToString().Length > 4)
                 {
-                    byte[] imgData = (byte[])item["chema"];
+                    byte[] imgData = (byte[])itemBuilding["chema"];
                     MemoryStream ms = new MemoryStream(imgData);
-                    nn.Add(new TableSpravka.Building()
+                    listBuildingTable.Add(new Building()
                     {
                         chema = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.OnLoad),
-                        id = item["id"].ToString(),
-                        building = item["building"].ToString(),
-                        number_quant = item["number_quant"].ToString(),
-                        address = it1,
+                        id = itemBuilding["id"].ToString(),
+                        building = itemBuilding["building"].ToString(),
+                        number_quant = itemBuilding["number_quant"].ToString(),
+                        address = this.dataAddress,
                     });
                 }
                 else
                 {
-                    nn.Add(new TableSpravka.Building()
+                    listBuildingTable.Add(new Building()
                     {
-                        id = item["id"].ToString(),
-                        building = item["building"].ToString(),
-                        number_quant = item["number_quant"].ToString(),
-                        address = it1,
+                        id = itemBuilding["id"].ToString(),
+                        building = itemBuilding["building"].ToString(),
+                        number_quant = itemBuilding["number_quant"].ToString(),
+                        address = this.dataAddress,
                     });
                 }
             }
             DataGridOsn.ItemsSource = null;
             DataGridOsn.Items.Clear();
-            DataGridOsn.ItemsSource = nn;
+            DataGridOsn.ItemsSource = listBuildingTable;
 
             CBAddress.Items.Clear();
 
-            ListAddress = SelectTable.ff(CBAddress, "SELECT * FROM `address`", "address", 0);
+            ListAddress = SelectTable.listSelectTable(CBAddress, "SELECT * FROM `address`", 0);
         }
         public BuildingWindow()
         {
@@ -105,7 +85,7 @@ namespace Parking.Windows
             {
                 if (Msg.ShowQuestion("Вы действительно хотите выполнить это действие?"))
                 {
-                    ClassSpravka.MysqlLi("INSERT INTO `building` (`id`,`building`, `address`,`number_quant`,`chema`) VALUES (NULL,'" + TBBuilding.Text + "', '" + CBAddress.Text.Trim() + "','" + TBNumberQuant.Text + "',NULL);");
+                    Catalog.mysqlCommand("INSERT INTO `building` (`id`,`building`, `address`,`number_quant`,`chema`) VALUES (NULL,'" + TBBuilding.Text + "', '" + CBAddress.Text.Trim() + "','" + TBNumberQuant.Text + "',NULL);");
                     Load();
                 }
             }
@@ -119,11 +99,11 @@ namespace Parking.Windows
         {
             if (TBBuilding.Text != " " && CBAddress.Text != " " && TBNumberQuant.Text != " ")
             {
-                if (TBIDBuilding.Text != " ") 
+                if (TBIDBuilding.Text != " ")
                 {
                     if (Msg.ShowQuestion("Вы действительно хотите выполнить это действие?"))
                     {
-                        ClassSpravka.MysqlLi("UPDATE `building` SET `building` = '" + TBBuilding.Text + "',`address`='" + CBAddress.Text + "',`number_quant`='" + TBNumberQuant.Text + "' WHERE `id` = '" + TBIDBuilding.Text + "';");
+                        Catalog.mysqlCommand("UPDATE `building` SET `building` = '" + TBBuilding.Text + "',`address`='" + CBAddress.Text + "',`number_quant`='" + TBNumberQuant.Text + "' WHERE `id` = '" + TBIDBuilding.Text + "';");
                         Load();
                     }
                 }
@@ -144,7 +124,7 @@ namespace Parking.Windows
             {
                 if (Msg.ShowQuestion("Вы действительно хотите выполнить это действие?"))
                 {
-                    ClassSpravka.MysqlLi("DELETE FROM `building` WHERE `building`.`id` = '"+TBIDBuilding.Text+"'");
+                    Catalog.mysqlCommand("DELETE FROM `building` WHERE `building`.`id` = '" + TBIDBuilding.Text + "'");
                     Load();
                 }
             }
@@ -171,15 +151,15 @@ namespace Parking.Windows
         private void ButtonClickOB(object sender, RoutedEventArgs e)
         {
 
-                OpenFileDialog fm = new OpenFileDialog();
-                fm.Filter = "*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-                fm.ShowDialog();
-                if (fm.FileName != "")
-                {
-                    var bitimage = new BitmapImage(new Uri(fm.FileName));
-                    PicWorker.Source = bitimage;
-                    pp = fm.FileName;
-                }
+            OpenFileDialog fm = new OpenFileDialog();
+            fm.Filter = "*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            fm.ShowDialog();
+            if (fm.FileName != "")
+            {
+                var bitimage = new BitmapImage(new Uri(fm.FileName));
+                PicWorker.Source = bitimage;
+                pp = fm.FileName;
+            }
 
         }
 
@@ -193,11 +173,11 @@ namespace Parking.Windows
                     FileStream FStream = new FileStream(pp, FileMode.Open, FileAccess.Read);
                     BinaryReader BR = new BinaryReader(FStream);
                     BitImage = BR.ReadBytes((int)FStream.Length);
-                    ClassSpravka.Cn.Open();
-                    MySqlCommand Cmd2 = new MySqlCommand("UPDATE `building` SET `chema` = @img WHERE `id` = '" + TBIDBuilding.Text + "';", ClassSpravka.Cn);
+                    Catalog.connection.Open();
+                    MySqlCommand Cmd2 = new MySqlCommand("UPDATE `building` SET `chema` = @img WHERE `id` = '" + TBIDBuilding.Text + "';", Catalog.connection);
                     Cmd2.Parameters.Add(new MySqlParameter("@img", BitImage));
                     Cmd2.ExecuteReader();
-                    ClassSpravka.Cn.Close();
+                    Catalog.connection.Close();
                     MessageBox.Show("Фото обновлено");
                     Load();
                 }

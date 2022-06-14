@@ -1,65 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using LiveCharts;
+﻿using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using MySql.Data.MySqlClient;
-
-using Word = Microsoft.Office.Interop.Word;
-using Office = Microsoft.Office;
-using System.IO;
 using Microsoft.Win32;
+using System;
 using System.Data;
+using System.Linq;
+using System.Windows;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace Parking.Windows
 {
     public partial class StatistWindow : Window
     {
         public SeriesCollection SeriesCollection { get; set; }
-        string name = "";
+        string nameWindow = "";
         public StatistWindow(string name1)
         {
             InitializeComponent();
-            name = name1;
+            nameWindow = name1;
             Load();
         }
         public void Load()
         {
             try
             {
-                if (name != "")
+                if (nameWindow != "")
                 {
-                    DataTable dt = ClassSpravka.LoadVV("SELECT * FROM staff Where `email`='" + name + "'");
-                    name = dt.Rows[0].ItemArray[2].ToString() + " " + dt.Rows[0].ItemArray[3].ToString() + " " + dt.Rows[0].ItemArray[4].ToString();
+                    var dataTable = Catalog.LoadWindow("SELECT * FROM staff Where `email`='" + nameWindow + "'");
+                    nameWindow = dataTable.Rows[0].ItemArray[2].ToString() + " " + dataTable.Rows[0].ItemArray[3].ToString() + " " + dataTable.Rows[0].ItemArray[4].ToString();
                 }
                 else
                 {
-                    DataTable dt = ClassSpravka.LoadVV("SELECT * FROM staff Where `email`='" + ClassSpravka.NameF + "'");
-                    ClassSpravka.NameF = dt.Rows[0].ItemArray[2].ToString() + " " + dt.Rows[0].ItemArray[3].ToString() + " " + dt.Rows[0].ItemArray[4].ToString();
+                    DataTable dataTable = Catalog.LoadWindow("SELECT * FROM staff Where `email`='" + Catalog.lastName + "'");
+                    Catalog.lastName = dataTable.Rows[0].ItemArray[2].ToString() + " " + dataTable.Rows[0].ItemArray[3].ToString() + " " + dataTable.Rows[0].ItemArray[4].ToString();
                 }
             }
             catch { }
         }
         private void UpdateAllOnClick(object sender, RoutedEventArgs e)
         {
-            var r = new Random();
+            var random = new Random();
 
             foreach (var series in SeriesCollection)
             {
                 foreach (var observable in series.Values.Cast<ObservableValue>())
                 {
-                    observable.Value = r.Next(0, 10);
+                    observable.Value = random.Next(0, 10);
                 }
             }
         }
@@ -119,7 +105,7 @@ namespace Parking.Windows
 
         private void ClickExit(object sender, RoutedEventArgs e)
         {
-            ManagerWindow fm = new ManagerWindow(name);
+            ManagerWindow fm = new ManagerWindow(nameWindow);
             fm.Show();
             this.Close();
         }
@@ -129,12 +115,12 @@ namespace Parking.Windows
             try
             {
                 SeriesCollection = new SeriesCollection();
-                DataTable DT = ClassSpravka.LoadVV("SELECT `customer`,`building`,SUM(`price`),COUNT(`customer`) FROM `parking` Where `datestart`>'" + DPOt.SelectedDate.Value.Year + "." + DPOt.SelectedDate.Value.Month + "." + DPOt.SelectedDate.Value.Day + "' and `dataend` <'" + DPDo.SelectedDate.Value.Year + "." + DPDo.SelectedDate.Value.Month + "." + DPDo.SelectedDate.Value.Day + "' GROUP BY building");
+                DataTable DT = Catalog.LoadWindow("SELECT `customer`,`building`,SUM(`price`),COUNT(`customer`) FROM `parking` Where `datestart`>'" + DPOt.SelectedDate.Value.Year + "." + DPOt.SelectedDate.Value.Month + "." + DPOt.SelectedDate.Value.Day + "' and `dataend` <'" + DPDo.SelectedDate.Value.Year + "." + DPDo.SelectedDate.Value.Month + "." + DPDo.SelectedDate.Value.Day + "' GROUP BY building");
                 foreach (DataRow item in DT.Rows)
                 {
                     SeriesCollection.Add(new PieSeries()
                     {
-                        Title = item[0].ToString() + " - " + item[1].ToString() + " - " + item[2].ToString()+ " Рублей",
+                        Title = item[0].ToString() + " - " + item[1].ToString() + " - " + item[2].ToString() + " Рублей",
                         Values = new ChartValues<ObservableValue> { new ObservableValue(Convert.ToDouble(item[3].ToString())) },
                         DataLabels = true
                     });
@@ -152,30 +138,30 @@ namespace Parking.Windows
 
         private void ButtonClickOtchet(object sender, RoutedEventArgs e)
         {
-            Microsoft.Office.Interop.Word.Application App = new Microsoft.Office.Interop.Word.Application();
-            Microsoft.Office.Interop.Word.Document Doc = new Word.Document();
+            Microsoft.Office.Interop.Word.Application applicationWorld = new Microsoft.Office.Interop.Word.Application();
+            Microsoft.Office.Interop.Word.Document documentWorld = new Word.Document();
             try
             {
-                DataTable DT = ClassSpravka.LoadVV("SELECT `customer` as `Покупатель`,`building` as `Строение`,SUM(`price`) as `Цена (Руб)` FROM `parking` Where `datestart`>'" + DPOt.SelectedDate.Value.Year + "." + DPOt.SelectedDate.Value.Month + "." + DPOt.SelectedDate.Value.Day + "' and `dataend` <'" + DPDo.SelectedDate.Value.Year + "." + DPDo.SelectedDate.Value.Month + "." + DPDo.SelectedDate.Value.Day + "' GROUP BY building");
-                DataTable sum = ClassSpravka.LoadVV("SELECT COUNT(`customer`) as `Покупатель`,SUM(`price`) as `Сумма (Руб)` FROM `parking` Where `datestart`>'" + DPOt.SelectedDate.Value.Year + "." + DPOt.SelectedDate.Value.Month + "." + DPOt.SelectedDate.Value.Day + "' and `dataend` <'" + DPDo.SelectedDate.Value.Year + "." + DPDo.SelectedDate.Value.Month + "." + DPDo.SelectedDate.Value.Day + "'");
-                Doc = App.Documents.Add(System.IO.Directory.GetCurrentDirectory() + @"\shablon.docx");
-                Doc.Activate();
-                if (name != "")
+                DataTable dataTable = Catalog.LoadWindow("SELECT `customer` as `Покупатель`,`building` as `Строение`,SUM(`price`) as `Цена (Руб)` FROM `parking` Where `datestart`>'" + DPOt.SelectedDate.Value.Year + "." + DPOt.SelectedDate.Value.Month + "." + DPOt.SelectedDate.Value.Day + "' and `dataend` <'" + DPDo.SelectedDate.Value.Year + "." + DPDo.SelectedDate.Value.Month + "." + DPDo.SelectedDate.Value.Day + "' GROUP BY building");
+                DataTable sumTable = Catalog.LoadWindow("SELECT COUNT(`customer`) as `Покупатель`,SUM(`price`) as `Сумма (Руб)` FROM `parking` Where `datestart`>'" + DPOt.SelectedDate.Value.Year + "." + DPOt.SelectedDate.Value.Month + "." + DPOt.SelectedDate.Value.Day + "' and `dataend` <'" + DPDo.SelectedDate.Value.Year + "." + DPDo.SelectedDate.Value.Month + "." + DPDo.SelectedDate.Value.Day + "'");
+                documentWorld = applicationWorld.Documents.Add(System.IO.Directory.GetCurrentDirectory() + @"\shablon.docx");
+                documentWorld.Activate();
+                if (nameWindow != "")
                 {
-                    FindAndReplace("name", name, App);
+                    FindAndReplace("name", nameWindow, applicationWorld);
                 }
-                else { FindAndReplace("name", ClassSpravka.NameF, App); }
-                FindAndReplace("date1", DPOt.SelectedDate.Value, App);
-                FindAndReplace("date2", DPDo.SelectedDate.Value, App);
-                FindAndReplace("namett", sum.Rows[0].ItemArray[0].ToString(), App);
-                FindAndReplace("priceall", sum.Rows[0].ItemArray[1].ToString(), App);
-                FindAndReplace("dataS", DateTime.Now.ToString(), App);
-                Microsoft.Office.Interop.Word.Table Tab = Doc.Tables[1];
-                for (int i = 0; i <= DT.Rows.Count - 1; i++)
+                else { FindAndReplace("name", Catalog.lastName, applicationWorld); }
+                FindAndReplace("date1", DPOt.SelectedDate.Value, applicationWorld);
+                FindAndReplace("date2", DPDo.SelectedDate.Value, applicationWorld);
+                FindAndReplace("namett", sumTable.Rows[0].ItemArray[0].ToString(), applicationWorld);
+                FindAndReplace("priceall", sumTable.Rows[0].ItemArray[1].ToString(), applicationWorld);
+                FindAndReplace("dataS", DateTime.Now.ToString(), applicationWorld);
+                Microsoft.Office.Interop.Word.Table Tab = documentWorld.Tables[1];
+                for (int i = 0; i <= dataTable.Rows.Count - 1; i++)
                 {
                     Tab.Rows.Add();
                 }
-                for (int i = 0; i < DT.Columns.Count - 1; i++)
+                for (int i = 0; i < dataTable.Columns.Count - 1; i++)
                 {
                     Tab.Columns.Add();
                 }
@@ -183,14 +169,14 @@ namespace Parking.Windows
                 int Row = 0, Colums = 0, RowS = 0, Count = 0;
                 foreach (Microsoft.Office.Interop.Word.Row row in Tab.Rows)
                 {
-                    object[] sa = DT.Rows[RowS].ItemArray;
+                    object[] sa = dataTable.Rows[RowS].ItemArray;
                     Colums = 0;
                     Row = 0;
                     foreach (Microsoft.Office.Interop.Word.Cell item in row.Cells)
                     {
                         if (item.RowIndex == 1)
                         {
-                            item.Range.Text = DT.Columns[Colums].ColumnName;
+                            item.Range.Text = dataTable.Columns[Colums].ColumnName;
                             Colums++;
                         }
                         else
@@ -204,17 +190,17 @@ namespace Parking.Windows
                     if (Count == RowS)
                         RowS = RowS - 1;
                 }
-                SaveFileDialog fm = new SaveFileDialog();
-                fm.Filter = "DOCX files(*.docx)|*.docx|All files(*.*)|*.*";
+                var saveFile = new SaveFileDialog();
+                saveFile.Filter = "DOCX files(*.docx)|*.docx|All files(*.*)|*.*";
                 Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
                 saveFileDialog.FileName = "Отчет";
                 saveFileDialog.DefaultExt = ".docx";
                 saveFileDialog.Filter = "DOCX files(*.docx)|*.docx|All files(*.*)|*.*";
                 saveFileDialog.ShowDialog();
-                Doc.SaveAs2(saveFileDialog.FileName);
+                documentWorld.SaveAs2(saveFileDialog.FileName);
             }
-            catch (Exception ex) { MessageBox.Show("Ошибка Word" + ex.ToString()); }
-            finally { Doc.Close(); }
+            catch (Exception error) { MessageBox.Show("Ошибка Word" + error.ToString()); }
+            finally { documentWorld.Close(); }
         }
     }
 }

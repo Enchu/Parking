@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Alexey\Source\Parking1\Parking\obj\Debug\
+C:\Users\Alexey\Source\Repos\Parking\Parking\obj\Debug\
 Parking
 none
 false
 DEBUG;TRACE
-C:\Users\Alexey\Source\Parking1\Parking\App.xaml
+C:\Users\Alexey\Source\Repos\Parking\Parking\App.xaml
 7415816660
 
-16-1546335618
-139-1830591822
+191891543901
+1392131840712
 Windows\BuildingWindow.xaml;Windows\CustomerWindow.xaml;Windows\MainWindow.xaml;Windows\AdminWindow.xaml;Windows\ManagerWindow.xaml;Windows\SpravochnikWindow.xaml;Windows\StatistWindow.xaml;
 
 False

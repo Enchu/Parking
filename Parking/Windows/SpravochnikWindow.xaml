@@ -36,9 +36,9 @@
             </StackPanel>
             <StackPanel Margin="5" Grid.Column="1">
                 <ComboBox Name="CBSpravka" SelectionChanged="CBSpravkaSelectionChanged"/>
-                <TextBox Name="Name1tb"/>
-                <TextBox Visibility="Hidden" Name="Name2tb"/>
-                <TextBox Visibility="Hidden" Name="Namett"/>
+                <TextBox Name="NameFirstTable"/>
+                <TextBox Visibility="Hidden" Name="NameTwoTable"/>
+                <TextBox Visibility="Hidden" Name="NameFirstClone"/>
             </StackPanel>
             <StackPanel Margin="5" Grid.Column="2">
                 <Button Width="Auto" Content="Добавить" Click="ButtonClickAdd"/>

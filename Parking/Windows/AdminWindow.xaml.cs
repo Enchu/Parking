@@ -1,102 +1,82 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Parking.Entities;
+using Parking.Entities.Help;
+using Parking.Entities.NewFolder1;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
-using Parking.Windows;
-using Parking.Entities;
-
 
 namespace Parking.Windows
 {
     public partial class AdminWindow : Window
     {
-        List<ClassSpravka.Spravka> ListRole = new List<ClassSpravka.Spravka>();
-        List<ClassSpravka.Spravka> ListStatus = new List<ClassSpravka.Spravka>();
-        List<ClassSpravka.Spravka> ListGender = new List<ClassSpravka.Spravka>();
+        List<Directory> ListRole = new List<Directory>();
+        List<Directory> ListStatus = new List<Directory>();
+        List<Directory> ListGender = new List<Directory>();
 
-        void Load()
+        public void Load()
         {
-            nn.Clear();
+            listPersonTable.Clear();
 
-            ClassSpravka.Cn.Open();
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM `staff`", ClassSpravka.Cn);
-            DataTable dt = new DataTable();
-            dt.Load(cmd.ExecuteReader());
-            MySqlCommand cmd1 = new MySqlCommand("SELECT * FROM `role`", ClassSpravka.Cn);
-            DataTable dt1 = new DataTable();
-            dt1.Load(cmd1.ExecuteReader());
-            MySqlCommand cmd2 = new MySqlCommand("SELECT * FROM `status`", ClassSpravka.Cn);
-            DataTable dt2 = new DataTable();
-            dt2.Load(cmd2.ExecuteReader());
-            MySqlCommand cmd3 = new MySqlCommand("SELECT * FROM `gender`", ClassSpravka.Cn);
-            DataTable dt3 = new DataTable();
-            dt3.Load(cmd3.ExecuteReader());
-            ClassSpravka.Cn.Close();
+            var dataStaff = Catalog.LoadWindow("`staff`");
+            var dataRole = Catalog.LoadWindow("`role`");
+            var dataStatus = Catalog.LoadWindow("`status`");
+            var dataGender = Catalog.LoadWindow("`gender`");
 
-            foreach (DataRow item in dt.Rows)
+            foreach (DataRow itemStaff in dataStaff.Rows)
             {
-                foreach (DataRow item1 in dt1.Rows)
+                foreach (DataRow itemRole in dataRole.Rows)
                 {
-                    if (item1["Role"].ToString() == item["Role"].ToString())
+                    if (itemRole["Role"].ToString() == itemStaff["Role"].ToString())
                     {
-                        it1 = item1["Role"].ToString();
+                        tableRole = itemRole["Role"].ToString();
                     }
                 }
-                foreach (DataRow item2 in dt2.Rows)
+                foreach (DataRow itemStatus in dataStatus.Rows)
                 {
-                    if (item2["status"].ToString() == item["status"].ToString())
+                    if (itemStatus["status"].ToString() == itemStaff["status"].ToString())
                     {
-                        it2 = item2["status"].ToString();
+                        TableStatus = itemStatus["status"].ToString();
                     }
                 }
-                foreach (DataRow item3 in dt3.Rows)
+                foreach (DataRow itemGender in dataGender.Rows)
                 {
-                    if (item3["Gender"].ToString() == item["Gender"].ToString())
+                    if (itemGender["Gender"].ToString() == itemStaff["Gender"].ToString())
                     {
-                        it3 = item3["Gender"].ToString();
+                        tableGender = itemGender["Gender"].ToString();
                     }
                 }
-                nn.Add(new TableSpravka.Person()
+                listPersonTable.Add(new Person()
                 {
-                    First_name = item["First_name"].ToString(),
-                    Last_name = item["Last_name"].ToString(),
-                    Patronomyc = item["Patronomyc"].ToString(),
-                    Phone = item["Phone"].ToString(),
-                    Role = it1,
-                    Email = item["Email"].ToString(),
-                    Password = item["Password"].ToString(),
-                    Status = it2,
-                    Gender = it3,
+                    First_name = itemStaff["First_name"].ToString(),
+                    Last_name = itemStaff["Last_name"].ToString(),
+                    Patronomyc = itemStaff["Patronomyc"].ToString(),
+                    Phone = itemStaff["Phone"].ToString(),
+                    Role = tableRole,
+                    Email = itemStaff["Email"].ToString(),
+                    Password = itemStaff["Password"].ToString(),
+                    Status = TableStatus,
+                    Gender = tableGender,
                 });
             }
 
             DataGridOsn.ItemsSource = null;
             DataGridOsn.Items.Clear();
-            DataGridOsn.ItemsSource = nn;
+            DataGridOsn.ItemsSource = listPersonTable;
 
             CBStatus.Items.Clear();
             CBRole.Items.Clear();
             CBGender.Items.Clear();
 
-            ListRole = SelectTable.ff(CBRole, "SELECT * FROM `role`", "Role", 0);
-            ListStatus = SelectTable.ff(CBStatus, "SELECT * FROM `status`", "Status", 0);
-            ListGender = SelectTable.ff(CBGender, "SELECT * FROM `gender`", "gender", 0);
+            ListRole = SelectTable.listSelectTable(CBRole, "SELECT * FROM `role`", 0);
+            ListStatus = SelectTable.listSelectTable(CBStatus, "SELECT * FROM `status`", 0);
+            ListGender = SelectTable.listSelectTable(CBGender, "SELECT * FROM `gender`", 0);
         }
-        List<TableSpravka.Person> nn = new List<TableSpravka.Person>();
-        string it1 = null;
-        string it2 = null;
-        string it3 = null;
+        List<Person> listPersonTable = new List<Person>();
+        string tableRole = null;
+        string TableStatus = null;
+        string tableGender = null;
         public AdminWindow()
         {
             InitializeComponent();
@@ -137,7 +117,7 @@ namespace Parking.Windows
                 {
                     if (Msg.ShowQuestion("Вы действительно хотите добавить?"))
                     {
-                        ClassSpravka.Prover($"Select count(*) from staff where Email = '{TBEmail.Text}'", "INSERT INTO `staff` (`Email`,`Password`,`First_name`,`Last_name`,`Patronomyc`,`Phone`,`Status`,`Role`,`Gender`) VALUES " +
+                        Catalog.mysqlTableCommand($"Select count(*) from staff where Email = '{TBEmail.Text}'", "INSERT INTO `staff` (`Email`,`Password`,`First_name`,`Last_name`,`Patronomyc`,`Phone`,`Status`,`Role`,`Gender`) VALUES " +
                                 "( '" + TBEmail.Text + "','" + TBPassword.Text + "','" + TBFirst_name.Text + "', '" + TBLast_name.Text + "', '" + TBPatronomyc.Text + "', '" + TBPhone.Text + "', " +
                                 "'" + CBStatus.Text + "','" + CBRole.Text + "','" + CBGender.Text + "' );");
                         Load();
@@ -160,7 +140,7 @@ namespace Parking.Windows
             {
                 if (Msg.ShowQuestion("Вы действительно хотите обновить?"))
                 {
-                    ClassSpravka.Prover($"Select count(*) from staff where Email = '{TBEmail.Text}' and Phone = '" + TBPhone.Text + "'", "UPDATE `staff` SET `Email`='" + TBEmail.Text + "', `Password` = '" + TBPassword.Text + "', `First_name` = '" + TBFirst_name.Text + "', `Last_name` = '" + TBLast_name.Text + "', `Patronomyc` = '" + TBPatronomyc.Text + "', `Phone` = '" + TBPhone.Text + "', `Role` = '" + CBRole.Text + "',  `Status` = '" + CBStatus.Text + "',`Gender`='" + CBGender.Text + "' WHERE `staff`.`Email` = '" + TBIdEmail.Text + "';");
+                    Catalog.mysqlTableCommand($"Select count(*) from staff where Email = '{TBEmail.Text}' and Phone = '" + TBPhone.Text + "'", "UPDATE `staff` SET `Email`='" + TBEmail.Text + "', `Password` = '" + TBPassword.Text + "', `First_name` = '" + TBFirst_name.Text + "', `Last_name` = '" + TBLast_name.Text + "', `Patronomyc` = '" + TBPatronomyc.Text + "', `Phone` = '" + TBPhone.Text + "', `Role` = '" + CBRole.Text + "',  `Status` = '" + CBStatus.Text + "',`Gender`='" + CBGender.Text + "' WHERE `staff`.`Email` = '" + TBIdEmail.Text + "';");
                     Load();
                 }
             }
@@ -176,14 +156,14 @@ namespace Parking.Windows
             {
                 if (Msg.ShowQuestion("Вы действительно хотите удалить?"))
                 {
-                    ClassSpravka.Cn.Open();
+                    Catalog.connection.Open();
                     //Select count(*) from staff WHERE `Status` = "Работает" AND `Role` = "Администратор"
-                    MySqlCommand NameS = new MySqlCommand($"Select count(*) from staff WHERE `Status` = 'Работает' AND `Role` = 'Администратор'", ClassSpravka.Cn);
+                    MySqlCommand NameS = new MySqlCommand($"Select count(*) from staff WHERE `Status` = 'Работает' AND `Role` = 'Администратор'", Catalog.connection);
                     var Im = NameS.ExecuteScalar();
-                    ClassSpravka.Cn.Close();
+                    Catalog.connection.Close();
                     if ((long)Im != 1)
                     {
-                        ClassSpravka.MysqlLi("UPDATE `staff` SET `Status` = 'Удален' WHERE (`Email` = '" + TBEmail.Text + "')");
+                        Catalog.mysqlCommand("UPDATE `staff` SET `Status` = 'Удален' WHERE (`Email` = '" + TBEmail.Text + "')");
                         Load();
                     }
                 }
@@ -201,7 +181,7 @@ namespace Parking.Windows
             this.Close();
         }
 
-        
+
 
         private void KDPhone(object sender, KeyEventArgs e)
         {

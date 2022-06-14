@@ -123,10 +123,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Entities\ClassSpravka.cs" />
+    <Compile Include="Entities\Catalog.cs" />
+    <Compile Include="Entities\Help\Building.cs" />
+    <Compile Include="Entities\Help\Directory.cs" />
+    <Compile Include="Entities\Help\Manager.cs" />
+    <Compile Include="Entities\Help\Person.cs" />
     <Compile Include="Entities\SearchTable.cs" />
     <Compile Include="Entities\SelectTable.cs" />
-    <Compile Include="Entities\TableSpravka.cs" />
     <Compile Include="Utils\Msg.cs" />
     <Compile Include="Windows\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>

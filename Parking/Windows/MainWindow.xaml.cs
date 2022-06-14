@@ -16,7 +16,7 @@ namespace Parking
         {
             InitializeComponent();
         }
-        public static string text = string.Empty;
+        public static string textEmpty = string.Empty;
         public static Bitmap SetBitmap(int Width, int Height)//Капча
         {
             Random rnd = new Random();
@@ -26,11 +26,11 @@ namespace Parking
             Brush[] colors = { Brushes.Black, Brushes.Red, Brushes.RoyalBlue, Brushes.Green };
             Graphics g = Graphics.FromImage((System.Drawing.Image)result);
             g.Clear(Color.Gray);
-            text = String.Empty;
+            textEmpty = String.Empty;
             string ALF = "1234567890QWERTYUIOPASDFGHJKLZXCVBNM";
             for (int i = 0; i < 5; ++i)
-                text += ALF[rnd.Next(ALF.Length)];
-            g.DrawString(text,
+                textEmpty += ALF[rnd.Next(ALF.Length)];
+            g.DrawString(textEmpty,
             new Font("Arial", 20),
             colors[rnd.Next(colors.Length)],
             new PointF(Xpos, Ypos));
@@ -49,12 +49,12 @@ namespace Parking
         }
         public static BitmapImage Convert2(Bitmap src)
         {
-            MemoryStream ms = new MemoryStream();
-            ((System.Drawing.Bitmap)src).Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            var memoryStream = new MemoryStream();
+            ((System.Drawing.Bitmap)src).Save(memoryStream, System.Drawing.Imaging.ImageFormat.Bmp);
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            ms.Seek(0, SeekOrigin.Begin);
-            image.StreamSource = ms;
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            image.StreamSource = memoryStream;
             image.EndInit();
             return image;
         }
@@ -76,7 +76,7 @@ namespace Parking
                 PasswordBox.Visibility = Visibility.Visible; // PasswordBox - отобразить
             }
         }
-        string Pass = "", Role = "", name = "";
+        string pass = "", role = "", name = "";
 
         private void ClickExit(object sender, RoutedEventArgs e)
         {
@@ -86,26 +86,26 @@ namespace Parking
             }
         }
 
-        void VH()
+        void inputTable()
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM staff where Email='" + LoginBox.Text + "' and Password='" + PasswordBox.Password + "' and Status='Работает';", ClassSpravka.Cn);
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM staff where Email='" + LoginBox.Text + "' and Password='" + PasswordBox.Password + "' and Status='Работает';", Catalog.connection);
             try
             {
-                ClassSpravka.Cn.Open();
+                Catalog.connection.Open();
                 MySqlDataReader read = cmd.ExecuteReader();
                 
                 if (read.Read())
                 {
-                    Pass = read[1].ToString();
-                    Role = read[7].ToString();
+                    pass = read[1].ToString();
+                    role = read[7].ToString();
                     name = read[0].ToString();
-                    ClassSpravka.NameF = read[0].ToString();
+                    Catalog.lastName = read[0].ToString();
                     
                     switch (read[7].ToString())
                     {
                         case "Администратор":
                             {
-                                ClassSpravka.Cn.Close();
+                                Catalog.connection.Close();
                                 AdminWindow fm = new AdminWindow();
                                 fm.Show();
                                 this.Close();
@@ -113,7 +113,7 @@ namespace Parking
                             }
                         case "Менеджер":
                             {
-                                ClassSpravka.Cn.Close();
+                                Catalog.connection.Close();
                                 ManagerWindow fm = new ManagerWindow(name);
                                 fm.Show();
                                 this.Close();
@@ -126,23 +126,26 @@ namespace Parking
                     MessageBox.Show("Логин или пароль неверен!!!");
                 }
             }
-            catch (Exception Ex)
+            catch (Exception error)
             {
-                MessageBox.Show("Ошибка подключения к БД!!!" + Ex.ToString());
+                MessageBox.Show("Ошибка подключения к БД!!!" + error.ToString());
             }
-            finally { ClassSpravka.Cn.Close(); }
+            finally 
+            { 
+                Catalog.connection.Close(); 
+            }
         }
         private void ButtonAvtorizClick(object sender, RoutedEventArgs e)
         {
             if (LoginBox.Text != "" && PasswordBox.Password != "")
             {
-                int vhodcount = 0;
-                if (vhodcount <= 2)
+                int attemptsCount = 0;
+                if (attemptsCount <= 2)
                 {
-                    VH();
-                    vhodcount = vhodcount + 1;
+                    inputTable();
+                    attemptsCount = attemptsCount + 1;
                     ImageCaptcha.Source = Convert2(SetBitmap(Convert.ToInt32(ImageCaptcha.Width), Convert.ToInt32(ImageCaptcha.Height)));
-                    if (vhodcount == 2)
+                    if (attemptsCount == 2)
                     {
                         ImageCaptcha.Visibility = Visibility.Visible;
                         Cap.Visibility = Visibility.Visible;
@@ -150,9 +153,9 @@ namespace Parking
                 }
                 else
                 {
-                    if (Cap.Text == text)
+                    if (Cap.Text == textEmpty)
                     {
-                        VH();
+                        inputTable();
                     }
                     else
                     {

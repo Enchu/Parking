@@ -1,97 +1,89 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Parking.Entities;
+using Parking.Entities.Help;
+using Parking.Entities.NewFolder1;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Parking.Windows;
-using System.Windows.Threading;
-using Parking.Entities;
 
 namespace Parking.Windows
 {
     public partial class ManagerWindow : Window
     {
-        List<ClassSpravka.Spravka> ListOwner = new List<ClassSpravka.Spravka>();
-        List<ClassSpravka.Spravka> ListPlace = new List<ClassSpravka.Spravka>();
-        List<ClassSpravka.Spravka> ListBuilding = new List<ClassSpravka.Spravka>();
+        List<Directory> ListOwner = new List<Directory>();
+        List<Directory> ListPlace = new List<Directory>();
+        List<Directory> ListBuilding = new List<Directory>();
 
-        List<TableSpravka.Manager> nn = new List<TableSpravka.Manager>();
-        string it1 = null;
-        string it2 = null;
-        string it3 = null;
+        List<Manager> listManagerTable = new List<Manager>();
+        string tableEmail = null;
+        string tableSector = null;
+        string tableBuilding = null;
         void Load()
         {
-            nn.Clear();
+            listManagerTable.Clear();
 
-            DataTable dt = ClassSpravka.LoadVV("SELECT * FROM `parking`");
-            DataTable dt1 = ClassSpravka.LoadVV("SELECT * FROM `customer`");
-            DataTable dt2 = ClassSpravka.LoadVV("SELECT * FROM `sector`");
-            DataTable dt3 = ClassSpravka.LoadVV("SELECT * FROM `building`");
+            var dataParking = Catalog.LoadWindow("`parking`");
+            var dataCustomer = Catalog.LoadWindow("`customer`");
+            var dataSector = Catalog.LoadWindow("`sector`");
+            var dataBuilding = Catalog.LoadWindow("`building`");
 
-            foreach (DataRow item in dt.Rows)
+            foreach (DataRow itemParking in dataParking.Rows)
             {
-                foreach (DataRow item1 in dt1.Rows)
+                foreach (DataRow itemCustomer in dataCustomer.Rows)
                 {
-                    if (item1["email"].ToString() == item["customer"].ToString())
+                    if (itemCustomer["email"].ToString() == itemParking["customer"].ToString())
                     {
-                        it1 = item1["email"].ToString();
+                        tableEmail = itemCustomer["email"].ToString();
                     }
                 }
-                foreach (DataRow item2 in dt2.Rows)
+                foreach (DataRow itemSector in dataSector.Rows)
                 {
-                    if (item2["sector"].ToString() == item["sector"].ToString())
+                    if (itemSector["sector"].ToString() == itemParking["sector"].ToString())
                     {
-                        it2 = item2["sector"].ToString();
+                        tableSector = itemSector["sector"].ToString();
                     }
                 }
-                foreach (DataRow item3 in dt3.Rows)
+                foreach (DataRow itemBuilding in dataBuilding.Rows)
                 {
-                    if (item3["building"].ToString() == item["building"].ToString())
+                    if (itemBuilding["building"].ToString() == itemParking["building"].ToString())
                     {
-                        it3 = item3["building"].ToString();
+                        tableBuilding = itemBuilding["building"].ToString();
                     }
                 }
-                nn.Add(new TableSpravka.Manager()
+                listManagerTable.Add(new Manager()
                 {
-                    id = item["id"].ToString(),
-                    datestart = item["datestart"].ToString(),
-                    dataend = item["dataend"].ToString(),
-                    customer = it1,
-                    sector = it2,
-                    building = it3,
-                    price = item["price"].ToString(),
+                    Id = itemParking["id"].ToString(),
+                    DateStart = itemParking["datestart"].ToString(),
+                    DataEnd = itemParking["dataend"].ToString(),
+                    Customer = tableEmail,
+                    Sector = tableSector,
+                    Building = tableBuilding,
+                    Price = itemParking["price"].ToString(),
                 });
             }
             DataGridOsn.ItemsSource = null;
             DataGridOsn.Items.Clear();
-            DataGridOsn.ItemsSource = nn;
+            DataGridOsn.ItemsSource = listManagerTable;
 
             CBClient.Items.Clear();
             CBMesto.Items.Clear();
             CBBuilding.Items.Clear();
 
             CBMesto.Items.Add("Нет");
-            ListOwner = SelectTable.ff(CBClient, "SELECT * FROM `customer`", "email", 0);
-            ListPlace = SelectTable.ff(CBMesto, "SELECT * FROM `sector`", "sector", 0);
-            ListBuilding = SelectTable.ff(CBBuilding, "SELECT * FROM `building`", "building", 1);
+
+            ListOwner = SelectTable.listSelectTable(CBClient, "SELECT * FROM `customer`", 0);
+            ListPlace = SelectTable.listSelectTable(CBMesto, "SELECT * FROM `sector`", 0);
+            ListBuilding = SelectTable.listSelectTable(CBBuilding, "SELECT * FROM `building`", 1);
         }
 
-        string name1 = "";
+        string nameWindow = "";
         public ManagerWindow(string name)
         {
             InitializeComponent();
             Load();
-            name1 = name;
+            nameWindow = name;
         }
         private void DataGridMouseDoubleClickOsn(object sender, MouseButtonEventArgs e)
         {
@@ -127,12 +119,12 @@ namespace Parking.Windows
                     {
                         if (CBMesto.Text == "" || CBMesto.Text == "Нет")
                         {
-                            ClassSpravka.MysqlLi("INSERT INTO `parking` (`id`, `datestart`, `dataend`,`customer`, `sector`, `building`, `price`) VALUES (NULL, '" + DPDateStart.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "', '" + DPDataEnd.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "', '" + CBClient.Text + "', NULL, '" + CBBuilding.Text + "', '" + TBPrice.Text + "');");
+                            Catalog.mysqlCommand("INSERT INTO `parking` (`id`, `datestart`, `dataend`,`customer`, `sector`, `building`, `price`) VALUES (NULL, '" + DPDateStart.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "', '" + DPDataEnd.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "', '" + CBClient.Text + "', NULL, '" + CBBuilding.Text + "', '" + TBPrice.Text + "');");
                             Load();
                         }
                         else
                         {
-                            ClassSpravka.MysqlLi("INSERT INTO `parking` (`id`, `datestart`, `dataend`, `customer`, `sector`, `building`, `price`) VALUES (NULL, '" + DPDateStart.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "', '" + DPDataEnd.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "', '" + CBClient.Text + "', '" + CBMesto.Text + "', '" + CBBuilding.Text + "', '" + TBPrice.Text + "');");
+                            Catalog.mysqlCommand("INSERT INTO `parking` (`id`, `datestart`, `dataend`, `customer`, `sector`, `building`, `price`) VALUES (NULL, '" + DPDateStart.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "', '" + DPDataEnd.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "', '" + CBClient.Text + "', '" + CBMesto.Text + "', '" + CBBuilding.Text + "', '" + TBPrice.Text + "');");
                             Load();
                         }
                     }
@@ -158,8 +150,8 @@ namespace Parking.Windows
                     {
                         if (Msg.ShowQuestion("Вы действительно хотите обновить?"))
                         {
-                        
-                            ClassSpravka.MysqlLi("UPDATE `parking` SET `datestart` = '" + DPDateStart.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "', `dataend` = '" + DPDataEnd.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "',`sector`= '" + CBClient.Text + "', `sector`= '" + CBMesto.Text + "', `building`= '" + CBBuilding.Text + "', `price` = '" + TBPrice.Text + "' WHERE `parking`.`id` = '" + TBParkingID.Text + "';");
+
+                            Catalog.mysqlCommand("UPDATE `parking` SET `datestart` = '" + DPDateStart.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "', `dataend` = '" + DPDataEnd.Value.Value.Date.ToString("yyyy-MM-dd") + " " + DPDateStart.Value.Value.Hour.ToString() + ":" + DPDateStart.Value.Value.Minute.ToString() + ":" + DPDateStart.Value.Value.Second.ToString() + "',`sector`= '" + CBClient.Text + "', `sector`= '" + CBMesto.Text + "', `building`= '" + CBBuilding.Text + "', `price` = '" + TBPrice.Text + "' WHERE `parking`.`id` = '" + TBParkingID.Text + "';");
                             Load();
                         }
                     }
@@ -181,11 +173,11 @@ namespace Parking.Windows
 
         private void ButtonClickDelete(object sender, RoutedEventArgs e)
         {
-           if (TBParkingID.Text != "")
-           {
+            if (TBParkingID.Text != "")
+            {
                 if (Msg.ShowQuestion("Вы действительно хотите удалить?"))
                 {
-                    ClassSpravka.MysqlLi("DELETE FROM `parking` WHERE `id` = '" + TBParkingID.Text + "';");
+                    Catalog.mysqlCommand("DELETE FROM `parking` WHERE `id` = '" + TBParkingID.Text + "';");
                     Load();
                 }
             }
@@ -202,7 +194,7 @@ namespace Parking.Windows
             this.Close();
         }
 
-        
+
         private void Dataend_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             /*try
@@ -241,12 +233,12 @@ namespace Parking.Windows
 
         private void ButtonClickStatistika(object sender, RoutedEventArgs e)
         {
-            StatistWindow fm = new StatistWindow(name1);
+            StatistWindow fm = new StatistWindow(nameWindow);
             fm.Show();
             this.Close();
         }
         bool PriceArray = false;
-        int hours;int minutes;
+        int hours; int minutes;
         private void DPDataEnd_MouseMove(object sender, MouseEventArgs e)
         {
             try
